@@ -1,0 +1,27 @@
+<h1 class="text-center mb-4 text-2xl text-red-400">Todos</h1>
+<div class="w-1/2 mx-auto flex flex-col gap-4">
+<%= render "todo_lists/form"%>
+<div class="flex flex-col gap-4">
+<% @todo_lists.each do |todo_list| %>
+  <div class="flex justify-between items-center py-4 px-2 rounded-md drop-shadow-md bg-white">
+    <p>
+    <%= todo_list.content %>
+   </p>
+   <div class="flex space-x-2 items-center">
+     <%= link_to edit_todo_list_path(todo_list) do %>
+      <%= render "icons/update_icon" %>
+     <%end%>
+     <%= link_to todo_list_path(todo_list), data: { turbo_method:
+      :delete } do %>
+      <%= render "icons/delete_icon" %>
+     <% end %>
+   </div>
+  </div>
+<%end%>
+</div>
+<div class="flex justify-between items-center">
+  <h3 class="border px-2 py-4 border-gray-900/1 rounded-md">All Todos: <span> <%= @count_all %> </span></h3>
+  <h3 class="border px-2 py-4 border-gray-900/1 rounded-md">Active Todos: <span> <%= @count_active %> </span></h3>
+  <h3 class="border px-2 py-4 border-gray-900/1 rounded-md">Completed Todos: <span> <%= @count_completed %> </span></h3>
+</div>
+</div>
